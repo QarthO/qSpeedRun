@@ -1,0 +1,4 @@
+name: qTemplatePlugin
+version: '${project.version}'
+main: gg.quartzdev.qtemplateplugin.QTemplatePlugin
+api-version: 1.19
