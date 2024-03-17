@@ -1,13 +1,12 @@
-package gg.quartzdev.qtemplateplugin.util;
+package gg.quartzdev.qspeedrun.util;
 
-import gg.quartzdev.qtemplateplugin.commands.CMD;
-import gg.quartzdev.qtemplateplugin.commands.CMDreload;
-import gg.quartzdev.qtemplateplugin.commands.CommandManager;
-import gg.quartzdev.qtemplateplugin.commands.QCommand;
-import gg.quartzdev.qtemplateplugin.listeners.ExampleListener;
-import gg.quartzdev.qtemplateplugin.QTemplatePlugin;
-import gg.quartzdev.qtemplateplugin.storage.Config;
-import gg.quartzdev.qtemplateplugin.storage.QConfiguration;
+import gg.quartzdev.qspeedrun.commands.CMD;
+import gg.quartzdev.qspeedrun.commands.CMDreload;
+import gg.quartzdev.qspeedrun.commands.CommandManager;
+import gg.quartzdev.qspeedrun.commands.QCommand;
+import gg.quartzdev.qspeedrun.listeners.BossDeathListener;
+import gg.quartzdev.qspeedrun.QSpeedRun;
+import gg.quartzdev.qspeedrun.storage.Config;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 
@@ -18,11 +17,11 @@ import java.util.List;
 public class QPlugin {
 
     public static QPlugin instance;
-    private static QTemplatePlugin javaPlugin;
+    private static QSpeedRun javaPlugin;
     private static Config config;
     private boolean selfDisabled;
 
-    public static QTemplatePlugin getPlugin(){
+    public static QSpeedRun getPlugin(){
         return javaPlugin;
     }
 
@@ -30,7 +29,7 @@ public class QPlugin {
         return config;
     }
 
-    private QPlugin(QTemplatePlugin plugin, boolean useConfig, int bStatsPluginId){
+    private QPlugin(QSpeedRun plugin, boolean useConfig, int bStatsPluginId){
         javaPlugin = plugin;
 
         if(useConfig){
@@ -45,7 +44,7 @@ public class QPlugin {
         registerListeners();
     }
 
-    public static void enable(QTemplatePlugin plugin, boolean useConfig, int bStatsPluginId){
+    public static void enable(QSpeedRun plugin, boolean useConfig, int bStatsPluginId){
         if(instance != null){
             QLogger.error(Messages.ERROR_PLUGIN_ENABLE);
             return;
@@ -97,7 +96,7 @@ public class QPlugin {
 
     public void registerCommands(){
         List<String> aliases = new ArrayList<>();
-        aliases.add("template");
+        aliases.add("speedrun");
         HashMap<String, QCommand> subCommands = new HashMap<>();
         subCommands.put("", new CMD("info", QPerm.GROUP_BASIC));
         subCommands.put("reload", new CMDreload("reload", QPerm.GROUP_ADMIN));
@@ -105,7 +104,7 @@ public class QPlugin {
     }
 
     public void registerListeners(){
-        Bukkit.getPluginManager().registerEvents(new ExampleListener(), javaPlugin);
+        Bukkit.getPluginManager().registerEvents(new BossDeathListener(), javaPlugin);
     }
 
 }

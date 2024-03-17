@@ -1,4 +1,4 @@
-package gg.quartzdev.qtemplateplugin.util;
+package gg.quartzdev.qspeedrun.util;
 
 import org.bukkit.Bukkit;
 

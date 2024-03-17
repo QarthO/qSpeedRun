@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>gg.quartzdev</groupId>
-    <artifactId>qTemplatePlugin</artifactId>
+    <artifactId>qSpeedRun</artifactId>
     <version>1.0-BETA</version>
     <packaging>jar</packaging>
 
-    <name>qTemplatePlugin</name>
+    <name>qSpeedRun</name>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -49,7 +49,7 @@
                 <version>2.3.1</version>
                 <configuration>
                     <!--                    Mac-->
-<!--                    <outputDirectory>/Users/derek/Minecraft/Server/Local Dev Server/plugins/update</outputDirectory>-->
+                    <outputDirectory>/Users/derek/Minecraft/Server/Local Dev Server/plugins/update</outputDirectory>
                     <!--                    Windows-->
 <!--                    <outputDirectory>C:\Users\derek\Documents\Minecraft\Server\Pufferfish 1.20.4\plugins\update</outputDirectory>-->
                 </configuration>

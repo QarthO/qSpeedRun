@@ -1,10 +1,10 @@
-package gg.quartzdev.qtemplateplugin.util;
+package gg.quartzdev.qspeedrun.util;
 
 public enum Messages {
 
     //    Plugin Prefix
-    CONSOLE_PREFIX("<gray>[<red>q<aqua>Plugin<gray>]"),
-    CHAT_PREFIX("<red>q<aqua>Plugin <bold><gray>></bold>"),
+    CONSOLE_PREFIX("<gray>[<red>q<aqua>SpeedRun<gray>]"),
+    CHAT_PREFIX("<red>q<aqua>SpeedRun <bold><gray>></bold>"),
 
     //    Generic Plugin
     PLUGIN_INFO("<prefix> <green>Running version <gray><version>"),
@@ -26,6 +26,8 @@ public enum Messages {
 
 //          Example Messages
     CONFIG_SET_SETTING("<prefix> <yellow><setting><green> has been set to <yellow><value>"),
+    BROADCAST_BOSS_KILLED("<prefix> <green><player_color><player_name> <green>killed a <dark_purple><boss_type>"),
+    BROADCAST_BOSS_DEATH("<prefix> Someone killed a <dark_purple><boss_type>"),
 
     END("");
 

@@ -1,3 +1,7 @@
 #test
 schema-version: 1.0
 disabled-worlds: []
+boss-types:
+  - WITHER
+  - WARDEN
+  - ENDER_DRAGON

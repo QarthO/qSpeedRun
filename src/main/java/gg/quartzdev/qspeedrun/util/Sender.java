@@ -1,11 +1,14 @@
-package gg.quartzdev.qtemplateplugin.util;
+package gg.quartzdev.qspeedrun.util;
 
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Nullable;
 
 public class Sender {
     public static void message(CommandSender sender, String message){
@@ -14,7 +17,6 @@ public class Sender {
         else
             sender.sendMessage(parse(message, true));
     }
-
 
     /**
      * Sends a Message to the player in chat
@@ -44,6 +46,19 @@ public class Sender {
         player.sendMessage(parse(message, false));
 
     }
+
+    public static void broadcast(String message, @Nullable Sound sound){
+        Audience audience = Audience.audience(Bukkit.getOnlinePlayers());
+        audience.sendMessage(parse(message, false));
+
+        if(sound != null) {
+            audience.playSound(sound);
+        }
+
+//        Sends broadcast to console
+        message(Bukkit.getConsoleSender(), message);
+    }
+
 
     /**
      * Sends an action bar to a player

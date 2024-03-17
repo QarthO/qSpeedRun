@@ -1,9 +1,9 @@
-package gg.quartzdev.qtemplateplugin.commands;
+package gg.quartzdev.qspeedrun.commands;
 
-import gg.quartzdev.qtemplateplugin.util.Messages;
-import gg.quartzdev.qtemplateplugin.util.QPerm;
-import gg.quartzdev.qtemplateplugin.util.QPlugin;
-import gg.quartzdev.qtemplateplugin.util.Sender;
+import gg.quartzdev.qspeedrun.util.Messages;
+import gg.quartzdev.qspeedrun.util.QPerm;
+import gg.quartzdev.qspeedrun.util.QPlugin;
+import gg.quartzdev.qspeedrun.util.Sender;
 import org.bukkit.command.CommandSender;
 
 public class CMDreload extends QCommand{

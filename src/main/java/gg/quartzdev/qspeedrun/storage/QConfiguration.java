@@ -1,8 +1,8 @@
-package gg.quartzdev.qtemplateplugin.storage;
+package gg.quartzdev.qspeedrun.storage;
 
-import gg.quartzdev.qtemplateplugin.util.Messages;
-import gg.quartzdev.qtemplateplugin.util.QLogger;
-import gg.quartzdev.qtemplateplugin.util.QPlugin;
+import gg.quartzdev.qspeedrun.util.Messages;
+import gg.quartzdev.qspeedrun.util.QLogger;
+import gg.quartzdev.qspeedrun.util.QPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;

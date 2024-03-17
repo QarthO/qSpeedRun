@@ -1,4 +1,4 @@
-name: qTemplatePlugin
+name: qSpeedRun
 version: '${project.version}'
-main: gg.quartzdev.qtemplateplugin.QTemplatePlugin
+main: gg.quartzdev.qspeedrun.QSpeedRun
 api-version: 1.19

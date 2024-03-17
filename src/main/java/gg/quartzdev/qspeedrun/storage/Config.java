@@ -1,4 +1,4 @@
-package gg.quartzdev.qtemplateplugin.storage;
+package gg.quartzdev.qspeedrun.storage;
 
 import org.bukkit.World;
 
