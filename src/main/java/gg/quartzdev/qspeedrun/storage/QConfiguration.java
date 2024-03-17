@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public abstract class QConfiguration {
     private final String fileName;
@@ -163,6 +164,22 @@ public abstract class QConfiguration {
         }
     }
 
+    public @NotNull List<EntityType> getEntityTypeList(String path){
+        List<EntityType> entityTypeList = new ArrayList<>();
+        if(!yamlConfiguration.contains(path)){
+            return entityTypeList;
+        }
+        for(String name : yamlConfiguration.getStringList(path)){
+            try {
+                entityTypeList.add(EntityType.valueOf(name));
+            } catch(IllegalArgumentException e){
+//                TODO: Add logging or comment out bad entity type
+                continue;
+            }
+        }
+        return entityTypeList;
+    }
+
     public @Nullable Location getLocation(String path){
         return yamlConfiguration.getLocation(path);
     }
@@ -172,16 +189,9 @@ public abstract class QConfiguration {
         return yamlConfiguration.getList(path, list);
     }
 
-    public List<String> getStringList(String path){
-        if(!yamlConfiguration.contains(path)){
-            return new ArrayList<>();
-        }
-        return yamlConfiguration.getStringList(path);
-    }
-
     public List<World> getWorldList(String path){
         List<World> worlds = new ArrayList<>();
-        for(String worldName : getStringList(path)){
+        for(String worldName : yamlConfiguration.getStringList(path)){
             World world = Bukkit.getWorld(worldName);
             if(world == null){
 //                    logger.error(Language.ERROR_WORLD_NOT_FOUND.parse("world", worldName));

@@ -2,6 +2,7 @@ package gg.quartzdev.qspeedrun.listeners;
 
 import gg.quartzdev.qspeedrun.util.Messages;
 import gg.quartzdev.qspeedrun.util.QLogger;
+import gg.quartzdev.qspeedrun.util.QPlugin;
 import gg.quartzdev.qspeedrun.util.Sender;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
@@ -17,18 +18,16 @@ import java.util.HashSet;
 
 public class BossDeathListener implements Listener {
 
-    HashSet<EntityType> bosses;
-
     public BossDeathListener(){
-        bosses = new HashSet<>();
-        bosses.add(EntityType.WITHER);
-        bosses.add(EntityType.ENDER_DRAGON);
-        bosses.add(EntityType.WARDEN);
     }
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event){
-        if(!bosses.contains(event.getEntityType())){
+        if(QPlugin.getConfig().isDisabledWorld(event.getEntity().getWorld())){
+            return;
+        }
+
+        if(!QPlugin.getConfig().isBossType(event.getEntityType())){
             return;
         }
         final LivingEntity entity = event.getEntity();

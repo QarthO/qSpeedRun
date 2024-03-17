@@ -4,6 +4,9 @@ import gg.quartzdev.qspeedrun.util.QPerm;
 import gg.quartzdev.qspeedrun.util.QPlugin;
 import gg.quartzdev.qspeedrun.util.Sender;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
+
+import java.util.List;
 
 public class CMD extends QCommand{
     public CMD(String name, QPerm permissionGroup) {
@@ -13,8 +16,8 @@ public class CMD extends QCommand{
     @Override
     public boolean logic(CommandSender sender, String label, String[] args) {
 
-        double schemaVersion = QPlugin.getConfig().getSchema();
-        Sender.message(sender, "Schema Version: " + schemaVersion);
+        List<EntityType> schemaVersion = QPlugin.getConfig().getBossTypes();
+        Sender.message(sender, "Bosses: " + schemaVersion.toString());
         return true;
     }
 
