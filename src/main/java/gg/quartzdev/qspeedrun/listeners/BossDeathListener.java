@@ -43,8 +43,9 @@ public class BossDeathListener implements Listener {
                 .parse("player_name", player.getName())
                 .parse("boss_type", WordUtils.capitalizeFully(event.getEntityType().name()));
 
+        Sender.broadcast(msg.get());
         Sound sound = Sound.sound(Key.key("block.note_block.banjo"), Sound.Source.BLOCK, 1f, 1f);
-        Sender.broadcast(msg.get(), sound);
+        Sender.broadcast(sound);
     }
 
 }

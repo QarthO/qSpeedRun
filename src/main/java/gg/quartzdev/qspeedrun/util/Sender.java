@@ -47,13 +47,17 @@ public class Sender {
 
     }
 
-    public static void broadcast(String message, @Nullable Sound sound){
+    public static void broadcast(Sound sound){
+        final Audience audience = Audience.audience(Bukkit.getOnlinePlayers());
+        audience.playSound(sound);
+
+        // Logs sound broadcast
+        message(Bukkit.getConsoleSender(), Messages.LOG_BROADCAST_SOUND.parse("sound", sound.toString()));
+    }
+
+    public static void broadcast(String message){
         Audience audience = Audience.audience(Bukkit.getOnlinePlayers());
         audience.sendMessage(parse(message, false));
-
-        if(sound != null) {
-            audience.playSound(sound);
-        }
 
 //        Sends broadcast to console
         message(Bukkit.getConsoleSender(), message);

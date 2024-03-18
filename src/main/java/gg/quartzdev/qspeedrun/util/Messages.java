@@ -12,7 +12,7 @@ public enum Messages {
     PLUGIN_DISABLE("<prefix> Disabling..."),
     PLUGIN_UNSAFE_DISABLE("<prefix> <yellow>Caution: Reloading the server might cause issues. Try restarting the server next time"),
     ERROR_CMD_NOT_FOUND("<prefix> <red>Error: Command not found: <yellow><cmd>"),
-    ERROR_NO_PERMISSION("<prefix> <red>Error: You don't have permission to perform this"),
+    ERROR_NO_PERMISSION("<prefix> <red>Error: Insufficient permission"),
     ERROR_PLAYER_ONLY_COMMAND("<prefix> <red>Error: You must be a player to run this command"),
     ERROR_CONSOLE_ONLY_COMMAND("<prefix> <red>Error: This command can only be ran from the console"),
     //      Dev Errors
@@ -28,6 +28,7 @@ public enum Messages {
     CONFIG_SET_SETTING("<prefix> <yellow><setting><green> has been set to <yellow><value>"),
     BROADCAST_BOSS_KILLED("<prefix> <green><player_color><player_name> <green>killed a <dark_purple><boss_type>"),
     BROADCAST_BOSS_DEATH("<prefix> Someone killed a <dark_purple><boss_type>"),
+    LOG_BROADCAST_SOUND("<prefix> Broadcating sound to all players: <yellow><sound>"),
 
     END("");
 
