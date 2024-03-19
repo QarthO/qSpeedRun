@@ -1,7 +1,20 @@
 #test
 schema-version: 1.0
+check-updates: false
+
+# Disabled Worlds where boss deaths will not be tracked
 disabled-worlds: []
+# The type of mobs that are considered bosses
+# Mob Types: https://jd.papermc.io/paper/1.20/org/bukkit/entity/EntityType.html
 boss-types:
   - WITHER
   - WARDEN
   - ENDER_DRAGON
+# The sound that is broadcasted to every player whenever a boss is killed
+# Sound list: https://jd.papermc.io/paper/1.20/org/bukkit/Sound.html
+# Default: 'UI_TOAST_CHALLENGE_COMPLETE'
+# Set to 'NONE' to disable
+boss-death-alert:
+  sound: UI_TOAST_CHALLENGE_COMPLETE
+  volume: 1
+  pitch: 1

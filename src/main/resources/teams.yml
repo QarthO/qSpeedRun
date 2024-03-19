@@ -1,0 +1,25 @@
+teams:
+  blue:
+    bosses: {}
+    players: []
+  red:
+    bosses: {}
+    players: []
+  green:
+    bosses: {}
+    players: []
+  yellow:
+    bosses: {}
+    players: []
+  black:
+    bosses: {}
+    players: []
+  orange:
+    bosses: {}
+    players: []
+  pink:
+    bosses: {}
+    players: []
+  white:
+    bosses: {}
+    players: []

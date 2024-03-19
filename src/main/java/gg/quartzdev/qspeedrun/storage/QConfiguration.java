@@ -5,6 +5,7 @@ import gg.quartzdev.qspeedrun.util.QLogger;
 import gg.quartzdev.qspeedrun.util.QPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
@@ -15,7 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public abstract class QConfiguration {
     private final String fileName;
@@ -127,11 +127,42 @@ public abstract class QConfiguration {
         }
         return number;
     }
+    /**
+     * Parses string
+     * @param path location in the config
+     * @param defaultValue default float value that is returned if no number is found at the given config path
+     * @return the {@link Number} that is represented by the string value found at the given path. Will will return a {@link Number} of value 0 if unable to parse the string.
+     */
+    public @NotNull Number getNumber(String path, float defaultValue){
+        Object data = yamlConfiguration.get(path);
+
+//       If data isn't found
+        if(data == null){
+            return defaultValue;
+        }
+//        Convert to string and try parsing
+        String rawData = data.toString();
+        Number number = null;
+        try {
+            number = Double.parseDouble(rawData);
+        } catch(NumberFormatException e1) {
+            try {
+                number = Integer.parseInt(rawData);
+            } catch(NumberFormatException e2) {
+                try {
+                    number = Long.parseLong(rawData);
+                } catch(NumberFormatException e3) {
+                    return defaultValue;
+                }
+            }
+        }
+        return number;
+    }
 
     /**
      * Gets a ${@link String } at the given path in the configuration file.
-     * @param path - the path in the configuration
-     * @return - the string value found at the given path. Returns an empty string if no data found
+     * @param path the path in the configuration
+     * @return the string value found at the given path. Returns an empty string if no data found
      */
     public @NotNull String getString(String path){
 
@@ -147,34 +178,16 @@ public abstract class QConfiguration {
     }
 
     public @Nullable EntityType getEntityType(String path){
-        Object data = yamlConfiguration.get(path);
-
-//       If data isn't found
-        if(data == null){
-            return null;
-        }
-
-//        Convert to string and try parsing
-        String rawData = data.toString();
-
-        try {
-            return EntityType.valueOf(rawData);
-        } catch(IllegalArgumentException e){
-            return null;
-        }
+        final Object data = yamlConfiguration.get(path);
+        return QConfigurationReader.entityType(data);
     }
 
     public @NotNull List<EntityType> getEntityTypeList(String path){
         List<EntityType> entityTypeList = new ArrayList<>();
-        if(!yamlConfiguration.contains(path)){
-            return entityTypeList;
-        }
         for(String name : yamlConfiguration.getStringList(path)){
-            try {
-                entityTypeList.add(EntityType.valueOf(name));
-            } catch(IllegalArgumentException e){
-//                TODO: Add logging or comment out bad entity type
-                continue;
+            EntityType type = QConfigurationReader.entityType(name);
+            if(type != null){
+                entityTypeList.add(type);
             }
         }
         return entityTypeList;
@@ -201,5 +214,18 @@ public abstract class QConfiguration {
             }
         }
         return worlds;
+    }
+
+    public @Nullable Sound getSound(String path){
+        final Object data = yamlConfiguration.get(path);
+        return QConfigurationReader.sound(data);
+    }
+
+    public void setSound(String path, Sound sound){
+        if(sound == null){
+            yamlConfiguration.set(path, "NONE");
+            return;
+        }
+        yamlConfiguration.set(path, sound.name());
     }
 }

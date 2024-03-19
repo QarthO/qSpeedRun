@@ -1,5 +1,7 @@
 package gg.quartzdev.qspeedrun.storage;
 
+import gg.quartzdev.qspeedrun.util.QLogger;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 
@@ -11,18 +13,26 @@ public class Config extends QConfiguration {
 
     private final String PATH_DISABLED_WORLDS = "disabled-worlds";
     private final String PATH_BOSS_TYPES = "boss-types";
+    private final String PATH_BOSS_ALERT_SOUND = "boss-death-alert.sound";
+    private final String PATH_BOSS_ALERT_VOLUME = "boss-death-alert.volume";
+    private final String PATH_BOSS_ALERT_PITCH = "boss-death-alert.pitch";
     private List<World> disabledWorlds;
     private List<EntityType> bossTypes;
+    private Sound bossAlertSound;
+    private float bossAlertVolume;
+    private float bossAlertPitch;
 
     public Config(String fileName) {
         super(fileName);
         disabledWorlds = new ArrayList<>();
         bossTypes = new ArrayList<>();
+        loadAllData();
     }
 
     public void loadAllData(){
         loadDisabledWorlds();
         loadBossTypes();
+        loadBossDeathAlert();
     }
     public void saveAllData(){
         saveDisabledWorlds();
@@ -55,4 +65,20 @@ public class Config extends QConfiguration {
     public List<EntityType> getBossTypes(){
         return List.copyOf(bossTypes);
     }
+
+    public void loadBossDeathAlert() {
+        bossAlertSound = getSound(PATH_BOSS_ALERT_SOUND);
+        bossAlertVolume = getNumber(PATH_BOSS_ALERT_VOLUME, 1f).floatValue();
+        bossAlertPitch = getNumber(PATH_BOSS_ALERT_PITCH, 1f).floatValue();
+    }
+
+    public net.kyori.adventure.sound.Sound getBossAlert(){
+        return net.kyori.adventure.sound.Sound.sound(
+                bossAlertSound,
+                net.kyori.adventure.sound.Sound.Source.RECORD,
+                bossAlertVolume,
+                bossAlertPitch
+        );
+    }
+
 }
